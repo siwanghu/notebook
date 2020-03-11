@@ -121,3 +121,5 @@
 ![snowflake](./pic/snowflake.png)  
 + 利用集群生成全局ID，性能极高，可从集群中不同机器上获取全局ID
 + 强依赖机器时钟，如果机器上时钟出现错误（回拨），可能会导致发号重复
+  
+[@SiwangHu](https://github.com/siwanghu)
