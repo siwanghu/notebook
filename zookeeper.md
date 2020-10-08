@@ -10,6 +10,10 @@
         - [schema](#schema)
         - [id](#id)
         - [permission](#permission)
+    - [数据存储](#数据存储)
+        - [内存数据](#内存数据)
+        - [事务日志](#事务日志)
+        - [快照](#快照)
     - [集群](#集群)
         - [角色](#角色)
     - [ZAB协议](#zab协议)
@@ -85,7 +89,19 @@
 + DELETE(d): 删除权限，可以删除当前的node，即对子节点Delete操作  
 + READ(r): 读权限，可以获取当前node的数据，可以list当前node所有的child nodes，即对本节点GetChildren和GetData操作  
 + WRITE(w): 写权限，可以向当前node写数据，即对本节点SetData操作  
-+ ADMIN(a): 管理权限，可以设置当前node的permission，即对本节点setAcl操作
++ ADMIN(a): 管理权限，可以设置当前node的permission，即对本节点setAcl操作  
+## 数据存储  
+![zab](./pic/zkdump.png)
++ leader生成对应的事务proposal，并将其发送给集群中所有follower机器  
++ follower收到proposal后,将该proposal**写入到事务日志**，然后反馈ACK给leader  
++ leader收到过半follower的ACK后，广播commit消息给所有follower  
++ follower收到commit消息后将**事务应用到内存中** 
+### 内存数据
+
+### 事务日志  
+
+### 快照
+
 ## 集群
 ![zk](./pic/zk)  
 ### 角色  
