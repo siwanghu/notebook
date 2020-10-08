@@ -97,6 +97,13 @@
 + leader收到过半follower的ACK后，广播commit消息给所有follower  
 + follower收到commit消息后将**事务应用到内存中** 
 ### 内存数据
++ DataTree  
+> 内存数据存储，利用concurrentHashMap存储数据，Key为节点路径，value为DataNode  
++ DataNode  
+> 存储节点数据，ACL信息等  
++ ZKDatabase  
+> 管理Zookeeper所有会话、DataTree存储和事务日志，定时dump内存快照  
+![zk-data](./pic/zk-data.png)  
 
 ### 事务日志  
 
